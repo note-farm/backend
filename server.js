@@ -38,6 +38,6 @@ require('./app/routes/note.routes.js')(app);
 require('./app/routes/category.routes.js')(app);
 
 // listen for requests
-app.listen(3000, () => {
-    console.log("Server is listening on port 3000");
+app.listen(2672, () => {
+    console.log("Server is listening on port 2672");
 });
