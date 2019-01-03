@@ -49,12 +49,13 @@ title: "My altered Awesome Note"
 content: "The updated content for my note"
 category: "Category 2 for my note, must exist"
 ```
+
+To delete a note, you want to hit `http://localhost:2672/notes/noteId` where `noteId` is equal to the ID of the note you want to delete. To get the ID of the note, run a get request at `http://localhost:2672/notes`
+
 ---
 ### **Categories**
 
-To get a list of all categories, hit `http://localhost:2672/category` with a GET request, you will get a list of all categories returned in JSON format.
-
-To delete a note, you want to hit `http://localhost:2672/notes/noteId` where `noteId` is equal to the ID of the note you want to delete. To get the ID of the note, run a get request at `http://localhost:2672/notes`
+To get a list of all categories, hit `http://localhost:2672/categories` with a GET request, you will get a list of all categories returned in JSON format.
 
 To create a new category, you want to hit `http://localhost:2672/category` with a POST request, and pass the following parameters in the body:
 
@@ -70,4 +71,4 @@ title: "Category 1 - Altered"
 description: "A new description for your category"
 ```
 
-To delete a category, you want to hit `http://localhost:2672/category/categoryId` where `categoryId` is equal to the ID of the note you want to delete. To get the ID of the category, run a get request at `http://localhost:2672/notes`
+To delete a category, you want to hit `http://localhost:2672/categories/categoryId` where `categoryId` is equal to the ID of the note you want to delete. To get the ID of the category, run a get request at `http://localhost:2672/notes`
