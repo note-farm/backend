@@ -34,7 +34,7 @@ The API's are then available at http://localhost:2672
 
 To get a list of all notes, hit `http://localhost:2672/notes` with a GET request, the list will be returned in JSON format.
 
-To write a post, you want to hit `http://localhost:2672/notes` with a POST request, and pass the following parameters in the body:
+To create a new note, you want to hit `http://localhost:2672/notes` with a POST request, and pass the following parameters in the body:
 
 ```json
 title: "My Awesome note"
