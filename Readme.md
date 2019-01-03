@@ -8,12 +8,13 @@ Build a Restful CRUD API for a simple Note-Taking application using Node.js, Exp
 
 ```bash
 npm install
+npm install -g nodemon
 ```
 
 2. Run Server
 
 ```bash
-node server.js
+nodemon server.js
 ```
 
 You can browse the apis at <http://localhost:3000>
