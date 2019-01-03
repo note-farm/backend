@@ -1,3 +1,3 @@
 module.exports = {
-    url: 'mongodb://localhost:27017/zt-notes'
+    url: 'mongodb://localhost:27017/note-farm'
 }
