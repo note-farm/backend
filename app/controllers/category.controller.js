@@ -115,15 +115,3 @@ exports.delete = (req, res) => {
             });
         });
 };
-
-// Find all notes under a specific category
-exports.findNotes = (req, res) => {
-    Note.find(req.params.category)
-        .then(notes => {
-            res.send(notes);
-        }).catch(err => {
-            res.status(500).send({
-                message: err.message || "Something broke"
-            });
-        });
-};
