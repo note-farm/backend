@@ -18,17 +18,23 @@ mongoose.Promise = global.Promise;
 
 // connecting to the database
 mongoose.connect(dbConfig.url, {
-	useNewUrlParser: true
+    useNewUrlParser: true
 }).then(() => {
-    console.log("Successfully connected to the database");    
+    console.log("Successfully connected to the database");
 }).catch(err => {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
 });
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "*");
+    next();
+});
+
 // define a simple route
 app.get('/', (req, res) => {
-    res.json({"message": "Welcome to the Note Farm application. Take notes quickly. Organize and keep track of all your notes, by ID, Category, or both!"});
+    res.json({ "message": "Welcome to the Note Farm application. Take notes quickly. Organize and keep track of all your notes, by ID, Category, or both!" });
 });
 
 // import notes api
