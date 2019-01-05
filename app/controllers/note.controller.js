@@ -29,7 +29,7 @@ exports.create = (req, res) => {
                 message: err.message || "Some error occurred while creating the Note."
             });
         });
-    res.redirect('http://localhost:8080')
+    res.redirect('http://localhost:8080/notes')
 };
 
 // Retrieve and return all notes from the database.
