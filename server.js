@@ -34,7 +34,7 @@ app.use(function (req, res, next) {
 
 // define a simple route
 app.get('/', (req, res) => {
-    res.json({ "message": "Welcome to the Note Farm application. Take notes quickly. Organize and keep track of all your notes, by ID, Category, or both!" });
+    res.json({ "message": "Welcome to the Note Farm application. Take notes quickly. Organize and keep track of all your notes by Category" });
 });
 
 // import notes api
