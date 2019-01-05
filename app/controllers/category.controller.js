@@ -25,6 +25,7 @@ exports.create = (req, res) => {
                 message: err.message || "An error occurred while creating the category."
             });
         });
+    res.redirect('http://localhost:8080/categories')
 };
 
 // Retrieve and return all categories from the database.
