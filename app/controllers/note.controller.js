@@ -7,9 +7,9 @@ exports.create = (req, res) => {
         return res.status(400).send({
             message: "Note content can not be empty"
         });
-    } if (!req.body.categoryId) {
+    } if (!req.body.category) {
         return res.status(400).send({
-            message: "Note categoryId can not be empty"
+            message: "Note category can not be empty"
         })
     }
 
@@ -17,7 +17,7 @@ exports.create = (req, res) => {
     const note = new Note({
         title: req.body.title || "Untitled Note",
         content: req.body.content,
-        categoryId: req.body.categoryId
+        category: req.body.category
     });
 
     // Save Note in the database
@@ -29,6 +29,7 @@ exports.create = (req, res) => {
                 message: err.message || "Some error occurred while creating the Note."
             });
         });
+    res.redirect('http://localhost:8080')
 };
 
 // Retrieve and return all notes from the database.
@@ -72,9 +73,9 @@ exports.update = (req, res) => {
         return res.status(400).send({
             message: "Note content can not be empty"
         });
-    } if (!req.body.categoryId) {
+    } if (!req.body.category) {
         return res.status(400).send({
-            message: "Note categoryId can not be empty"
+            message: "Note category can not be empty"
         })
     }
 
@@ -82,7 +83,7 @@ exports.update = (req, res) => {
     Note.findByIdAndUpdate(req.params.noteId, {
         title: req.body.title || "Untitled Note",
         content: req.body.content,
-        categoryId: req.body.categoryId
+        category: req.body.category
     }, { new: true })
         .then(note => {
             if (!note) {
@@ -127,7 +128,7 @@ exports.delete = (req, res) => {
 
 // Find all notes under a specific category
 exports.findNotes = (req, res) => {
-    Note.findById(req.params.categoryId)
+    Note.findById(req.params.category)
         .then(notes => {
             console.log(notes);
             res.send(notes);
