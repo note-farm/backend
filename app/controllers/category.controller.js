@@ -65,54 +65,58 @@ exports.findOne = (req, res) => {
 // Update a category identified by the categoryId in the request
 exports.update = (req, res) => {
     // Validate Request
-    if (!req.body.description) {
+    if (!req.body.title) {
         return res.status(400).send({
-            message: "category description can not be empty"
+            message: "Category title can not be empty"
+        })
+    } if (!req.body.description) {
+        return res.status(400).send({
+            message: "Category description can not be empty"
         });
     }
 
     // Find category and update it with the request body
-    Category.findByIdAndUpdate(req.params.categoryId, {
-        title: req.body.title || "Untitled category",
+    Category.findOneAndUpdate(req.body.title, {
+        title: req.body.newTitle || "Untitled category",
         description: req.body.description
     }, { new: true })
         .then(category => {
             if (!category) {
                 return res.status(404).send({
-                    message: "category not found with id " + req.params.categoryId
+                    message: "category not found with title " + req.body.title
                 });
             }
             res.send(category);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "category not found with id " + req.params.categoryId
+                    message: "category not found with title " + req.body.title
                 });
             }
             return res.status(500).send({
-                message: "Error updating category with id " + req.params.categoryId
+                message: "Error updating category with title " + req.body.title
             });
         });
 };
 
 // Delete a category with the specified categoryId in the request
 exports.delete = (req, res) => {
-    Category.findByIdAndRemove(req.params.categoryId)
+    Category.findOneAndDelete(req.body.title)
         .then(category => {
             if (!category) {
                 return res.status(404).send({
-                    message: "category not found with id " + req.params.categoryId
+                    message: "category not found with id " + req.body.title
                 });
             }
             res.send({ message: "category deleted successfully!" });
         }).catch(err => {
             if (err.kind === 'ObjectId' || err.name === 'NotFound') {
                 return res.status(404).send({
-                    message: "category not found with id " + req.params.categoryId
+                    message: "category not found with id " + req.body.title
                 });
             }
             return res.status(500).send({
-                message: "Could not delete category with id " + req.params.categoryId
+                message: "Could not delete category with id " + req.body.title
             });
         });
 };
