@@ -73,6 +73,10 @@ exports.update = (req, res) => {
         return res.status(400).send({
             message: "Category description can not be empty"
         });
+    } if (!req.body.newTitle) {
+        return res.status(400).send({
+            message: "The new title for the category can not be empty"
+        })
     }
 
     // Find category and update it with the request body
