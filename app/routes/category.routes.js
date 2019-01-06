@@ -7,9 +7,9 @@ module.exports = (app) => {
     // Retrieve all Categories
     app.get('/categories', categories.findAll);
 
-    // Update a Note with categoryId
+    // Update a Note with categoryName
     app.put('/categories/update', categories.update);
 
-    // Delete a Note with categoryId
+    // Delete a Note with categoryName
     app.delete('/categories/delete', categories.delete);
 }
