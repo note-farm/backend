@@ -21,6 +21,7 @@ exports.create = (req, res) => {
         .then(data => {
             res.send(data);
         }).catch(err => {
+            console.log(err)
             res.status(500).send({
                 message: err.message || "An error occurred while creating the category."
             });
@@ -81,11 +82,12 @@ exports.update = (req, res) => {
 
     // Find category and update it with the request body
     Category.findOneAndUpdate(req.body.title, {
-        title: req.body.newTitle || "Untitled category",
+        title: req.body.newTitle || req.body.title,
         description: req.body.description
     }, { new: true })
         .then(category => {
             if (!category) {
+                console.error('category not found')
                 return res.status(404).send({
                     message: "category not found with title " + req.body.title
                 });
@@ -93,6 +95,7 @@ exports.update = (req, res) => {
             res.send(category);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
+                console.error(err)
                 return res.status(404).send({
                     message: "category not found with title " + req.body.title
                 });
@@ -114,6 +117,7 @@ exports.delete = (req, res) => {
             }
             res.send({ message: "category deleted successfully!" });
         }).catch(err => {
+            console.log(err)
             if (err.kind === 'ObjectId' || err.name === 'NotFound') {
                 return res.status(404).send({
                     message: "category not found with id " + req.body.title
