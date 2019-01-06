@@ -7,9 +7,9 @@ module.exports = (app) => {
     // Retrieve all Notes
     app.get('/notes', notes.findAll);
 
-    // Update a Note with noteId
+    // Update a Note with noteTitle
     app.put('/notes/update', notes.update);
 
-    // Delete a Note with noteId
+    // Delete a Note with noteTitle
     app.delete('/notes/delete', notes.delete);
 }

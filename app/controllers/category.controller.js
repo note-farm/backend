@@ -1,5 +1,4 @@
 const Category = require('../models/category.model.js');
-const Note = require('../models/note.model.js');
 
 // Create and Save a new category
 exports.create = (req, res) => {
@@ -63,7 +62,7 @@ exports.findOne = (req, res) => {
         });
 };
 
-// Update a category identified by the categoryId in the request
+// Update a category identified by the categoryName in the request
 exports.update = (req, res) => {
     // Validate Request
     if (!req.body.title) {
@@ -77,7 +76,7 @@ exports.update = (req, res) => {
     } if (!req.body.newTitle) {
         return res.status(400).send({
             message: "The new title for the category can not be empty"
-        })
+        });
     }
 
     // Find category and update it with the request body
