@@ -6,6 +6,16 @@ This API requires MongoDB to run, and it uses the default MongoDB port to run, s
 
 There are several different endpoints in this API, and they can all be found in the /app/routes folder.
 
+# Starting the Server
+
+To start the server, complete the following steps:
+
+1. Start MongoDB
+2. Run `npm install`
+3. Run `npm install -g nodemon`
+4. Run `nodemon server.js`
+5. Browse to `http://localhost:2672`, if greeted by a welcome message, you are good to go!
+
 ## Notes
 
 To get a list of all notes, send a GET request to `http://localhost:2672/notes`. A list of notes will be returned in JSON format.
