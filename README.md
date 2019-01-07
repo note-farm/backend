@@ -6,7 +6,7 @@ This API requires MongoDB to run, and it uses the default MongoDB port to run, s
 
 There are several different endpoints in this API, and they can all be found in the /app/routes folder.
 
-# Starting the Server
+## Starting the Server
 
 To start the server, complete the following steps:
 
