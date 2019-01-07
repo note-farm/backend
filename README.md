@@ -1,74 +1,63 @@
-# NoteFarm Application
+# NoteFarm Backend
 
-A Restful CRUD API for a Note-Taking application using Node.js, Express and MongoDB.
+The NoteFarm backend is a RESTful API built using Express.js and MongoDB for keeping track of all your notes, because keeping track of notes shouldn't have to be complicated. For a simple frontend, with the backend included, see [the NoteFarm Offical Frontend](https://github.com/note-farm/frontend) package.
 
-## Dependencies
+This API requires MongoDB to run, and it uses the default MongoDB port to run, so all you need to do is install MongoDB, start the service, and sit back and relax.
 
-Before running the server, you must have the following things installed on your machine:
+There are several different endpoints in this API, and they can all be found in the /app/routes folder.
 
-- MongoDB
-- NPM
----
-## Setup
+## Notes
 
-1. Install dependencies
+To get a list of all notes, send a GET request to `http://localhost:2672/notes`. A list of notes will be returned in JSON format.
 
-```bash
-npm install
-npm install -g nodemon
-```
-
-2. Run Server
-
-```bash
-nodemon server.js
-```
-
-The API's are then available at http://localhost:2672
-
----
-
-## Examples
-
-### **Notes**
-
-To get a list of all notes, hit `http://localhost:2672/notes` with a GET request, the list will be returned in JSON format.
-
-To create a new note, you want to hit `http://localhost:2672/notes` with a POST request, and pass the following parameters in the body:
+To create a note, you can send a POST request to `http://localhost:2672/notes` with the following body params:
 
 ```json
-title: "My Awesome note"
-content: "The content for my awesome note"
-category: "Category for my note, must exist"
+    title: Note Name
+    content: Note Content
+    category: Note Category
 ```
 
-To update a note, you want to hit `http://localhost:2672/notes/noteId`, where `noteId` is the ID of the note you want to update, with a PUT request, and pass the paramaters you want to change:
+This request should return the contents of the note that has just been created, along with `_id`, `_createdAt`, and `_updatedAt`
+
+To delete a note, you send a DELETE request to `http://localhost:2672/notes/delete` and you only need to pass one paramater, the note name:
 
 ```json
-title: "My altered Awesome Note"
-content: "The updated content for my note"
-category: "Category 2 for my note, must exist"
+    title: Name of the Note you want to Delete
 ```
 
-To delete a note, you want to hit `http://localhost:2672/notes/noteId` where `noteId` is equal to the ID of the note you want to delete. To get the ID of the note, run a get request at `http://localhost:2672/notes`
-
----
-### **Categories**
-
-To get a list of all categories, hit `http://localhost:2672/categories` with a GET request, you will get a list of all categories returned in JSON format.
-
-To create a new category, you want to hit `http://localhost:2672/category` with a POST request, and pass the following parameters in the body:
+To update a note, you send a PUT request to `http://localhost:2672/notes/update` with the following body params:
 
 ```json
-title: "Category 1"
-description: "A description for your category"
+    title: Title of the note you want to edit
+    newTitle: New Title for the note
+    content: New content for the note
+    category: New category
 ```
 
-To update a category, you want to hit `http://localhost:2672/category/categoryId`, where `categoryId` is equal to the category you want to change, with a PUT request, and pass the paramaters you want to change:
+## Categories
+
+To get a list of all categories, send a GET request to `http://localhost:2672/categories`. A list of categories will be returned in JSON format.
+
+To create a category, you can send a POST request to `http://localhost:2672/categories` with the following body params:
 
 ```json
-title: "Category 1 - Altered"
-description: "A new description for your category"
+    title: Category Name
+    description: Category Description
 ```
 
-To delete a category, you want to hit `http://localhost:2672/categories/categoryId` where `categoryId` is equal to the ID of the note you want to delete. To get the ID of the category, run a get request at `http://localhost:2672/notes`
+This request should return the contents of the category that has just been created, along with `_id`, `_createdAt`, and `_updatedAt`
+
+To delete a category, you send a DELETE request to `http://localhost:2672/categories/delete` and you only need to pass one paramater, the category name:
+
+```json
+    title: Name of the Category you want to Delete
+```
+
+To update a category, you send a PUT request to `http://localhost:2672/categories/update` with the following body params:
+
+```json
+    title: Title of the category you want to edit
+    newTitle: New Title for the category
+    description: New description
+```
