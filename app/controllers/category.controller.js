@@ -25,7 +25,6 @@ exports.create = (req, res) => {
                 message: err.message || "An error occurred while creating the category."
             });
         });
-    res.redirect('http://localhost:8080/categories')
 };
 
 // Retrieve and return all categories from the database.
@@ -42,22 +41,22 @@ exports.findAll = (req, res) => {
 
 // Find a single category with a categoryId
 exports.findOne = (req, res) => {
-    Category.findById(req.params.categoryId)
+    Category.findOne(req.body.title)
         .then(category => {
             if (!category) {
                 return res.status(404).send({
-                    message: "category not found with id " + req.params.categoryId
+                    message: "category not found with id " + req.body.title
                 });
             }
             res.send(category);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "category not found with id " + req.params.categoryId
+                    message: "category not found with id " + req.body.title
                 });
             }
             return res.status(500).send({
-                message: "Error retrieving category with id " + req.params.categoryId
+                message: "Error retrieving category with id " + req.body.title
             });
         });
 };
@@ -127,3 +126,5 @@ exports.delete = (req, res) => {
             });
         });
 };
+
+module.exports = exports
